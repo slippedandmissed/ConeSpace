@@ -4,3 +4,31 @@
     height: 100%;
     position: absolute;
 }
+
+
+#ground {
+    background-color: red;
+    position: absolute;
+    top: 60%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    @media screen and (orientation: landscape) {
+        top: 80%;
+    }
+    
+}
+
+app-wafflecone {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: min(50vh, min(90vw, 500px));
+    transform: translate(-40%, 10%);
+
+    @media screen and (orientation: landscape) {
+        transform: translate(-50%, 10%);
+    }
+
+}
