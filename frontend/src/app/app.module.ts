@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { WaffleconeComponent } from './components/wafflecone/wafflecone.component';
+import { SkyboxComponent } from './components/skybox/skybox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WaffleconeComponent
+    WaffleconeComponent,
+    SkyboxComponent
   ],
   imports: [
     BrowserModule,

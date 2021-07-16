@@ -5,9 +5,19 @@
     position: absolute;
 }
 
+app-skybox {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
 #ground {
-    background-color: red;
+    background-image: url("/assets/imgs/floor.png");
+    background-size: 200px;
+    border-top: 1px solid black;
     position: absolute;
     top: 60%;
     bottom: 0;
