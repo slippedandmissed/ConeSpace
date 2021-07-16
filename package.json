@@ -1,0 +1,31 @@
+{
+    "name": "conespace",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+        "node": "14.15.5"
+    },
+    "scripts": {
+        "start": "node index.js",
+        "build": "cd frontend && ng build && cd ..",
+        "serve": "cd frontend && ng serve && cd ..",
+        "test": "cd frontend && ng test && cd ..",
+        "heroku-postbuild": "cd frontend && npm i"
+    },
+    "author": "Morgan Saville",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "socketio": "^1.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/slippedandmissed/ConeSpace.git"
+    },
+    "bugs": {
+        "url": "https://github.com/slippedandmissed/ConeSpace/issues"
+    },
+    "homepage": "https://github.com/slippedandmissed/ConeSpace#readme"
+}
