@@ -10,3 +10,6 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+
+document.addEventListener("touchmove", (e) => { e.preventDefault() }, { passive: false });
