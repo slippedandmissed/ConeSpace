@@ -6,7 +6,6 @@ const router = express.Router();
 const allAttributes = {
     hunger: {
         default: () => new Date().getTime(),
-        min: () => -Infinity,
         max: () => new Date().getTime()
     },
     hunger_per_second: {
@@ -14,7 +13,6 @@ const allAttributes = {
     },
     thirst: {
         default: () => new Date().getTime(),
-        min: () => -Infinity,
         max: () => new Date().getTime()
     },
     thirst_per_second: {
@@ -22,7 +20,6 @@ const allAttributes = {
     },
     boredom: {
         default: () => new Date().getTime(),
-        min: () => -Infinity,
         max: () => new Date().getTime()
     },
     boredom_per_second: {
@@ -59,7 +56,8 @@ const setAttribute = async (name, value) => {
 }
 
 const increaseAttribute = async (name, delta) => {
-    const value = Math.min(Math.max(await getAttribute(name) + delta, allAttributes[name].min()), allAttributes[name].max());
+    const minimum = new Date().getTime() - 1000/(await getAttribute(`${name}_per_second`));
+    const value = Math.min(Math.max(await getAttribute(name), minimum) + delta, allAttributes[name].max());
     await setAttribute(name, value);
 }
 
