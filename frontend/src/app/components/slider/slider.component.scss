@@ -7,11 +7,11 @@ div {
     min-height: 1.5em;
     font-weight: 900;
     border-radius: 10000000px;
+    box-shadow: 0 2px 5px black;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    border: 1px solid black;
 
     @media screen and (orientation: landscape) {
         width: 40%;

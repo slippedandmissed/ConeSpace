@@ -25,9 +25,13 @@ export class ApiService {
     return this.http.get(url).toPromise();
   }
 
-  public socketOn(endpoint: string, callback: (result: any) => void): Listener {
+  public socketOn(endpoint: string, callback: (...result: any) => void): Listener {
     this.socket.on(endpoint, callback);
     return { endpoint, callback };
+  }
+
+  public socketEmit(endpoint: string, ...args: any[]): void {
+    this.socket.emit(endpoint, ...args);
   }
 
   public removeCallback(listener: Listener) {

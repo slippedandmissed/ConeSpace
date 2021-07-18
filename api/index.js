@@ -56,7 +56,7 @@ const setAttribute = async (name, value) => {
 }
 
 const increaseAttribute = async (name, delta) => {
-    const minimum = new Date().getTime() - 1000/(await getAttribute(`${name}_per_second`));
+    const minimum = new Date().getTime() - 1000 / (await getAttribute(`${name}_per_second`));
     const value = Math.min(Math.max(await getAttribute(name), minimum) + delta, allAttributes[name].max());
     await setAttribute(name, value);
 }
@@ -105,4 +105,18 @@ const emitAttributes = async (attributes, socket) => {
     }
 }
 
-module.exports = { router, emitAttributes };
+const setupListeners = (socket) => {
+    socket.on("createGhost", (id, img, x, y) => {
+        socket.broadcast.emit("createGhost", id, img, x, y);
+    });
+
+    socket.on("updateGhost", (id, x, y) => {
+        socket.broadcast.emit("updateGhost", id, x, y);
+    });
+
+    socket.on("deleteGhost", (id) => {
+        socket.broadcast.emit("deleteGhost", id);
+    });
+}
+
+module.exports = { router, emitAttributes, setupListeners };

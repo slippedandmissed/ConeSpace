@@ -44,5 +44,7 @@ db.client.connect(function (err) {
     io.on("connection", (socket) => {
         console.log(`Socket connected: ${socket.id}`);
         api.emitAttributes(null, socket);
+
+        api.setupListeners(socket);
     });
 });
