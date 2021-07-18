@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GhostsService } from 'src/app/services/ghosts.service';
 
 @Component({
@@ -19,6 +19,8 @@ export class InteractionComponent implements OnInit {
     }
     return text;
   }
+
+  @Output() drop: EventEmitter<void> = new EventEmitter();
   
   private myGhostId: string = this.generateID();
 
@@ -36,6 +38,7 @@ export class InteractionComponent implements OnInit {
 
   onDragEnd(event: any) {
     this.ghosts.deleteGhost(this.myGhostId);
+    this.drop.emit();
   }
 
   ngOnInit(): void {

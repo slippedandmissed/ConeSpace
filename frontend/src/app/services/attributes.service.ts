@@ -62,16 +62,26 @@ export class AttributesService {
     doCalculations();
   }
 
+  private clientSidePrediction(attribute: string, delta: number) {
+    if (this.rates[attribute]) {
+      const newValue = Math.max(Math.min(this.timestampedAttributes[attribute] - delta, 1), 0);
+      this.timestamps[attribute] = new Date().getTime() - newValue * 1000 / this.rates[attribute];
+    }
+  }
+
   public feed(amount: number) {
     this.api.get("feed", { amount });
+    this.clientSidePrediction("hunger", amount);
   }
 
   public water(amount: number) {
     this.api.get("water", { amount });
+    this.clientSidePrediction("thirst", amount);
   }
 
   public play(amount: number) {
     this.api.get("play", { amount });
+    this.clientSidePrediction("boredom", amount);
   }
 
 }
