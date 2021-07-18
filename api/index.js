@@ -106,16 +106,16 @@ const emitAttributes = async (attributes, socket) => {
 }
 
 const setupListeners = (socket) => {
-    socket.on("createGhost", (id, img, x, y) => {
-        socket.broadcast.emit("createGhost", id, img, x, y);
+    socket.on("createGhost", (...args) => {
+        socket.broadcast.emit("createGhost", ...args);
     });
 
-    socket.on("updateGhost", (id, x, y) => {
-        socket.broadcast.emit("updateGhost", id, x, y);
+    socket.on("updateGhost", (...args) => {
+        socket.broadcast.emit("updateGhost", ...args);
     });
 
-    socket.on("deleteGhost", (id) => {
-        socket.broadcast.emit("deleteGhost", id);
+    socket.on("deleteGhost", (...args) => {
+        socket.broadcast.emit("deleteGhost", ...args);
     });
 }
 
