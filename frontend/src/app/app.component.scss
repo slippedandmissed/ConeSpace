@@ -7,6 +7,9 @@
 
 app-skybox {
     pointer-events: none;
+}
+
+app-skybox, #controls {
     position: absolute;
     top: 0;
     left: 0;
@@ -34,11 +37,18 @@ app-wafflecone {
     position: absolute;
     bottom: 100%;
     left: 50%;
-    width: min(50vh, min(90vw, 500px));
+    width: min(70vh, min(90vw, 500px));
     transform: translate(-40%, 10%);
+    z-index: 100;
 
     @media screen and (orientation: landscape) {
-        transform: translate(-50%, 10%);
+        transform: translate(-40%, 10%);
     }
+}
 
+#controls {
+    app-slider {
+        margin: 10px;
+        font-size: max(1.2em, 1.5vw);
+    }
 }

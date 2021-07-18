@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AttributesService } from './services/attributes.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'conespace';
+
+  constructor(public attributes: AttributesService) {}
 }
