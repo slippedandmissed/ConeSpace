@@ -30,7 +30,7 @@ export class WaffleconeComponent implements OnInit {
     const originX = rect.left + width * 0.5;
     const originY = rect.top + height * 0.5;
 
-    const ghosts = this.ghosts.getGhosts();
+    const ghosts = this.ghosts.getGhosts().filter(x => x.active);
     if (ghosts.length) {
       this.animation = "reach";
 
@@ -46,8 +46,6 @@ export class WaffleconeComponent implements OnInit {
       }
 
       this.angle = Math.abs(this.armAngle) >= 10 ? Math.sign(this.armAngle) * 10 : this.armAngle;
-
-      console.log(this.angle);
     } else {
       this.angle = 0;
       this.armAngle = 180;
