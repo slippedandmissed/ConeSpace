@@ -125,6 +125,11 @@ $button-size: clamp(50px, 10vh, 5vw);
     display: flex;
     align-items: flex-start;
     flex-direction: row;
+    pointer-events: none!important;
+
+    > * {
+        pointer-events: all;
+    }
 
     @media screen and (orientation: portrait) {
         justify-content: center;
@@ -176,4 +181,8 @@ $button-size: clamp(50px, 10vh, 5vw);
             }
         }
     }
+}
+
+#sliders {
+    pointer-events: none;
 }
