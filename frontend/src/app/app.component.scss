@@ -62,6 +62,30 @@ app-wafflecone {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+
+        > * {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-direction: row;
+
+            > * {
+                margin: 5px;
+            }
+        }
+
+        @media screen and (max-height: 750px) {
+            #food, #drink {
+                display: none;
+            }
+        }
+
+        @media screen and (min-height: 751px) {
+            #food_and_drink {
+                display: none;
+            }
+        }
+
         @media screen and (orientation: portrait) {
             bottom: 5vh;
             left: 0;

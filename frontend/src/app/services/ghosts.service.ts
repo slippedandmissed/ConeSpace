@@ -47,6 +47,16 @@ export class GhostsService {
         audio.load();
         audio.play();
       }
+      else if (this.ghosts[id].type === "drink") {
+        audio.src = `/assets/audio/sip/${Math.floor(Math.random() * 4) + 1}.wav`;
+        audio.load();
+        audio.play();
+      }
+      else if (this.ghosts[id].type === "toy") {
+        audio.src = `/assets/audio/bell/${Math.floor(Math.random() * 1) + 1}.wav`;
+        audio.load();
+        audio.play();
+      }
     }
     if (reemit)
       this.api.socketEmit("deleteGhost", id);
@@ -58,7 +68,7 @@ export class GhostsService {
     }, 1000);
   }
 
-  public getGhosts(): Ghost [] {
+  public getGhosts(): Ghost[] {
     return Object.values(this.ghosts);
   }
 

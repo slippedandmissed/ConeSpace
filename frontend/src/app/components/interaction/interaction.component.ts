@@ -27,10 +27,11 @@ export class InteractionComponent implements OnInit {
   constructor(public ghosts: GhostsService) { }
 
   @Input() img: string = "";
+  @Input() ghostImg: string = "";
   @Input() type: ghostType;
 
   onDragStart(event: any) {
-    this.ghosts.createGhost(this.myGhostId, this.img, this.type, event.center.x, event.center.y);
+    this.ghosts.createGhost(this.myGhostId, this.ghostImg || this.img, this.type, event.center.x, event.center.y);
   }
 
   onDragMove(event: any) {
