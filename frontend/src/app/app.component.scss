@@ -10,7 +10,8 @@ app-skybox {
     pointer-events: none;
 }
 
-app-skybox, #controls {
+app-skybox,
+#controls {
     position: absolute;
     top: 0;
     left: 0;
@@ -31,7 +32,6 @@ app-skybox, #controls {
     @media screen and (orientation: landscape) {
         top: 80%;
     }
-    
 }
 
 app-wafflecone {
@@ -46,6 +46,8 @@ app-wafflecone {
         transform: translate(-40%, 10%);
     }
 }
+
+$button-size: clamp(50px, 10vh, 5vw);
 
 #controls {
     z-index: 2;
@@ -63,8 +65,8 @@ app-wafflecone {
     }
 
     #interactions {
+        font-size: $button-size;
         position: absolute;
-        font-size: clamp(50px, 10vh, 5vw);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -81,7 +83,8 @@ app-wafflecone {
         }
 
         @media screen and (max-height: 750px) {
-            #food, #drink {
+            #food,
+            #drink {
                 display: none;
             }
         }
@@ -95,7 +98,7 @@ app-wafflecone {
         @media screen and (orientation: portrait) {
             bottom: 10vh;
             left: 0;
-            right: 0; 
+            right: 0;
             align-items: center;
         }
 
@@ -115,4 +118,52 @@ app-wafflecone {
     height: 100%;
     pointer-events: none;
     z-index: 3;
+}
+
+.hats {
+    font-size: $button-size;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+
+    @media screen and (orientation: portrait) {
+        justify-content: center;
+        > * {
+            margin: 10px;
+        }
+        &.landscape {
+            display: none !important;
+        }
+    }
+    @media screen and (orientation: landscape) {
+        justify-content: flex-start;
+        &.portrait {
+            display: none !important;
+        }
+    }
+
+    .hat-button {
+        width: 1em;
+        height: 1em;
+        background-color: #80ff8f80;
+        box-shadow: 0 2px 15px black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.5s ease;
+
+        img {
+            max-width: 0.7em;
+            max-height: 0.7em;
+            pointer-events: none;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                transform: scale(1.5);
+            }
+        }
+    }
 }

@@ -16,6 +16,8 @@ export class AttributesService {
     boredom: 0
   };
 
+  public all_hats: string[] = [];
+
   get hunger(): number {
     return this.timestampedAttributes.hunger;
   }
@@ -54,6 +56,10 @@ export class AttributesService {
       this.hat = value;
     });
 
+    api.socketOn("attribute/all_hats", (values: string[]) => {
+      this.all_hats = values;
+    })
+
     const doCalculations = () => {
       this.calculateFromTimestamps();
       setTimeout(doCalculations, 1000 / this.updatesPerSecond);
@@ -82,6 +88,11 @@ export class AttributesService {
   public play(amount: number) {
     this.api.get("play", { amount });
     this.clientSidePrediction("boredom", amount);
+  }
+
+  public setHat(hat: string) {
+    this.hat = hat;
+    this.api.get("set_hat", { hat });
   }
 
 }

@@ -9,24 +9,24 @@ const allAttributes = {
         max: () => new Date().getTime()
     },
     hunger_per_second: {
-        default: () => 1/3600/24
+        default: () => 1 / 3600 / 24
     },
     thirst: {
         default: () => new Date().getTime(),
         max: () => new Date().getTime()
     },
     thirst_per_second: {
-        default: () => 1/3600/24 * 1.2
+        default: () => 1 / 3600 / 24 * 1.2
     },
     boredom: {
         default: () => new Date().getTime(),
         max: () => new Date().getTime()
     },
     boredom_per_second: {
-        default: () => 1/3600/24 * 0.9
+        default: () => 1 / 3600 / 24 * 0.9
     },
     all_hats: {
-        default: () => ["fedora", "fez", "tophat"]
+        default: () => ["fedora", "cowboy", "baseball", "party"]
     },
     hat: {
         default: () => null
@@ -59,7 +59,7 @@ const increaseAttribute = async (name, delta) => {
     const rate = await getAttribute(`${name}_per_second`);
     const now = new Date().getTime();
     const currentTimestamp = await getAttribute(name);
-    const currentValue = (now - currentTimestamp)/1000 * rate;
+    const currentValue = (now - currentTimestamp) / 1000 * rate;
     const newValue = Math.min(Math.max(currentValue + delta, 0), 1);
     const newTimestamp = now - (newValue / rate * 1000);
     await setAttribute(name, newTimestamp);
@@ -85,12 +85,12 @@ router.get("/play", async (req, res) => {
 
 router.get("/set_hat", async (req, res) => {
     const { hat } = req.query;
-    if (hat) {
+    if (!hat) {
         await setAttribute("hat", null);
     } else {
         const all_hats = await getAttribute("all_hats");
-        const hat = all_hats.includes(value) ? value : allAttributes.hat.default();
-        await setAttribute("hat", hat);
+        const value = all_hats.includes(hat) ? hat : allAttributes.hat.default();
+        await setAttribute("hat", value);
     }
 });
 

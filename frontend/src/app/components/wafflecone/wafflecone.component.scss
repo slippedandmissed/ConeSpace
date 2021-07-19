@@ -109,9 +109,7 @@ svg.reach {
     }
 }
 
-
 #hand {
-    
     &:not(.active) {
         display: none;
     }
@@ -128,4 +126,11 @@ svg.reach {
     100% {
         transform: translateY(-50%);
     }
+}
+
+.hat {
+    position: absolute;
+    max-width: 30%;
+    max-height: 40%;
+    transform: translate(-60%, -100%);
 }
