@@ -7,10 +7,12 @@
     <app-slider label="Hunger" [p]="attributes.hunger"></app-slider>
     <app-slider label="Thirst" [p]="attributes.thirst"></app-slider>
     <app-slider label="Boredom" [p]="attributes.boredom"></app-slider>
-    <div (click)="attributes.setHat(hat)" class="hat-button" *ngFor="let hat of attributes.all_hats">
-      <img [src]="'/assets/imgs/hats/'+hat+'.png'" alt="">
+    <div class="hats portrait">
+      <div (click)="attributes.setHat(hat)" class="hat-button" *ngFor="let hat of attributes.all_hats">
+        <img [src]="'/assets/imgs/hats/'+hat+'.png'" alt="">
+      </div>
     </div>
-</div>
+  </div>
   <div id="interactions">
     <div id="food">
       <app-interaction type="food" (drop)="attributes.feed(0.2)" img="/assets/imgs/interactions/cookie.png">
@@ -51,7 +53,7 @@
       <div (click)="attributes.setHat(hat)" class="hat-button" *ngFor="let hat of attributes.all_hats">
         <img [src]="'/assets/imgs/hats/'+hat+'.png'" alt="">
       </div>
-    </div>  
+    </div>
   </div>
 </div>
 <div id="entities">
