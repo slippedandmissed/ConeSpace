@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { generateID } from '../components/interaction/interaction.component';
 import { ApiService } from './api.service';
+import { PhysicsService } from './physics.service';
 
-export type ghostType = "food" | "drink" | "toy" | undefined;
+export type ghostType = "food" | "drink" | "toy" | "entity" | undefined;
 
 interface Ghost {
   x: number;
@@ -23,7 +25,7 @@ export class GhostsService {
   }
 
   public createGhost(id: string, img: string, type: ghostType, x: number, y: number, reemit: boolean = true) {
-    this.ghosts[id] = { img, x, y, type, active: true };
+    this.ghosts[id] = { img, x: x / document.body.clientWidth, y: y / document.body.clientHeight, type, active: true };
     this.drawGhosts();
     if (reemit)
       this.api.socketEmit("createGhost", id, img, type, x / document.body.clientWidth, y / document.body.clientHeight);
@@ -31,7 +33,7 @@ export class GhostsService {
 
 
   public updateGhost(id: string, x: number, y: number, reemit: boolean = true) {
-    this.ghosts[id] = { ...this.ghosts[id], x, y };
+    this.ghosts[id] = { ...this.ghosts[id], x: x / document.body.clientWidth, y: y / document.body.clientHeight };
     this.drawGhosts();
     if (reemit)
       this.api.socketEmit("updateGhost", id, x / document.body.clientWidth, y / document.body.clientHeight);
@@ -52,14 +54,18 @@ export class GhostsService {
         audio.load();
         audio.play();
       }
-      else if (this.ghosts[id].type === "toy") {
+      else {
         audio.src = `/assets/audio/bell/${Math.floor(Math.random() * 1) + 1}.wav`;
         audio.load();
         audio.play();
       }
     }
-    if (reemit)
+    if (reemit) {
+      if (this.ghosts[id].type === "entity") {
+        this.physics.createEntity(generateID(), this.ghosts[id].img, this.ghosts[id].x * document.body.clientWidth, this.ghosts[id].y * document.body.clientHeight);
+      }
       this.api.socketEmit("deleteGhost", id);
+    }
     setTimeout(() => {
       if (this.ghosts[id] && !this.ghosts[id].active) {
         delete this.ghosts[id];
@@ -80,15 +86,15 @@ export class GhostsService {
     for (const id in this.ghosts) {
       const ghost = this.ghosts[id];
       let obj: HTMLImageElement | null = document.querySelector(this.generateSelector(id));
-      if (!obj) {
+      if (obj === null) {
         obj = document.createElement("img");
         container.appendChild(obj);
         obj.classList.add("ghost");
         obj.src = ghost.img;
         obj.id = this.generateSelector(id).substring(1);
       }
-      obj.style.top = `${ghost.y}px`;
-      obj.style.left = `${ghost.x}px`;
+      obj.style.top = `${ghost.y * 100}vh`;
+      obj.style.left = `${ghost.x * 100}vw`;
       if (ghost.active) {
         obj.classList.remove("hidden");
       } else {
@@ -97,7 +103,7 @@ export class GhostsService {
     }
   }
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, private physics: PhysicsService) {
     api.socketOn("createGhost", (id, img, type, x, y) => {
       this.createGhost(id, img, type, x * document.body.clientWidth, y * document.body.clientHeight, false);
     });

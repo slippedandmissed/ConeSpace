@@ -36,11 +36,13 @@
       </app-interaction>
     </div>
     <div id="toys">
-      <app-interaction type="toy" (drop)="attributes.play(0.2)" img="/assets/imgs/interactions/yarn.png">
+      <app-interaction type="entity" (drop)="attributes.play(0.2)" img="/assets/imgs/interactions/yarn.png">
       </app-interaction>
-      <app-interaction type="toy" (drop)="attributes.play(0.3)" img="/assets/imgs/interactions/laserpointer.png" ghostImg="/assets/imgs/interactions/laserdot.png">
+      <app-interaction type="toy" (drop)="attributes.play(0.3)" img="/assets/imgs/interactions/laserpointer.png"
+        ghostImg="/assets/imgs/interactions/laserdot.png">
       </app-interaction>
-      <app-interaction type="toy" (drop)="attributes.play(0.2)" img="/assets/imgs/interactions/gnome.png">
+      <app-interaction type="entity" (drop)="attributes.play(0.2)" img="/assets/imgs/interactions/gnome.png">
       </app-interaction>
     </div>
   </div>
+  <div id="entities"></div>

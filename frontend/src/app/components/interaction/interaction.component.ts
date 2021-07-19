@@ -1,6 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GhostsService, ghostType } from 'src/app/services/ghosts.service';
 
+const idChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,./;'[]\=-)(*&^%$#@!~`";
+const idLength = 16;
+
+export function generateID(): string {
+  let text = "";
+  for (let i = 0; i < idLength; i++) {
+    text += idChars.charAt(Math.floor(Math.random() * idChars.length));
+  }
+  return text;
+}
+
+
 @Component({
   selector: 'app-interaction',
   templateUrl: './interaction.component.html',
@@ -9,20 +21,10 @@ import { GhostsService, ghostType } from 'src/app/services/ghosts.service';
 export class InteractionComponent implements OnInit {
 
 
-  private idChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,./;'[]\=-)(*&^%$#@!~`";
-  private idLength = 16;
-  
-  private generateID(): string {
-    let text = "";
-    for (let i = 0; i < this.idLength; i++) {
-      text += this.idChars.charAt(Math.floor(Math.random() * this.idChars.length));
-    }
-    return text;
-  }
 
   @Output() drop: EventEmitter<void> = new EventEmitter();
   
-  private myGhostId: string = this.generateID();
+  private myGhostId: string = generateID();
 
   constructor(public ghosts: GhostsService) { }
 

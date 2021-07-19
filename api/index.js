@@ -117,6 +117,27 @@ const setupListeners = (socket) => {
     socket.on("deleteGhost", (...args) => {
         socket.broadcast.emit("deleteGhost", ...args);
     });
+
+    socket.on("createEntity", (...args) => {
+        socket.broadcast.emit("createEntity", ...args);
+    });
+
+    socket.on("updateEntity", (...args) => {
+        socket.broadcast.emit("updateEntity", ...args);
+    });
+
+    socket.on("deleteEntity", (...args) => {
+        socket.broadcast.emit("deleteEntity", ...args);
+    });
+
+    socket.broadcast.emit("sendEntitiesPls");
+
+    socket.on("hereAreEntities", (entities) => {
+        for (const entity of entities) {
+            socket.broadcast.emit("createEntity", ...entity);
+        }
+    });
+
 }
 
 module.exports = { router, emitAttributes, setupListeners };

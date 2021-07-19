@@ -34,8 +34,8 @@ export class WaffleconeComponent implements OnInit {
     if (ghosts.length) {
       this.animation = "reach";
 
-      const targetX = ghosts[0].x;
-      const targetY = ghosts[0].y;
+      const targetX = ghosts[0].x * document.body.clientWidth;
+      const targetY = ghosts[0].y * document.body.clientHeight;
 
       const dx = targetX - originX;
       const dy = targetY - originY;
