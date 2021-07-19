@@ -121,4 +121,4 @@
             xlink:href="/assets/imgs/hand.png" />
     </defs>
 </svg>
-<img class="hat" [ngStyle]="{top: hatY+'px', left: hatX+'px'}" [src]="attributes.hat ? '/assets/imgs/hats/'+attributes.hat+'.png': null" alt="">
+<img class="hat" *ngIf="attributes.hat != null" [ngStyle]="{top: hatY+'px', left: hatX+'px'}" [src]="'/assets/imgs/hats/'+attributes.hat+'.png'" alt="">

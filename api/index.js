@@ -40,7 +40,7 @@ const getAttribute = async (name) => {
         db.db.collection("attributes").findOne({ name }, (err, doc) => {
             if (err) {
                 reject(err);
-            } else if (doc?.value) {
+            } else if (doc?.value !== undefined) {
                 resolve(doc.value);
             } else {
                 const value = allAttributes[name].default();

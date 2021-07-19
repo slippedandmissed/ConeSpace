@@ -52,7 +52,8 @@ export class AttributesService {
       });
     }
 
-    api.socketOn("attribute/hat", (value: string) => {
+    api.socketOn("attribute/hat", (value: string | null) => {
+      console.log(value);
       this.hat = value;
     });
 
