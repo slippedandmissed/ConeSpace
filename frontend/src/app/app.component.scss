@@ -23,7 +23,7 @@ app-skybox, #controls {
     background-size: 200px;
     border-top: 1px solid black;
     position: absolute;
-    top: 70%;
+    top: 60%;
     bottom: 0;
     left: 0;
     right: 0;
@@ -87,7 +87,7 @@ app-wafflecone {
         }
 
         @media screen and (orientation: portrait) {
-            bottom: 5vh;
+            bottom: 10vh;
             left: 0;
             right: 0; 
             align-items: center;
