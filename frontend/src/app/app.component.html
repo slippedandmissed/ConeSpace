@@ -11,6 +11,9 @@
       <div (click)="attributes.setHat(hat)" class="hat-button" *ngFor="let hat of attributes.all_hats">
         <img [src]="'/assets/imgs/hats/'+hat+'.png'" alt="">
       </div>
+      <div (click)="attributes.setHat(null)" class="hat-button">
+        <img src="/assets/imgs/hats/null.png" alt="">
+      </div>
     </div>
   </div>
   <div id="interactions">
@@ -52,6 +55,9 @@
     <div class="hats landscape">
       <div (click)="attributes.setHat(hat)" class="hat-button" *ngFor="let hat of attributes.all_hats">
         <img [src]="'/assets/imgs/hats/'+hat+'.png'" alt="">
+      </div>
+      <div (click)="attributes.setHat(null)" class="hat-button">
+        <img src="/assets/imgs/hats/null.png" alt="">
       </div>
     </div>
   </div>

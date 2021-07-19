@@ -90,9 +90,13 @@ export class AttributesService {
     this.clientSidePrediction("boredom", amount);
   }
 
-  public setHat(hat: string) {
+  public setHat(hat: string | null) {
     this.hat = hat;
-    this.api.get("set_hat", { hat });
+    if (hat) {
+      this.api.get("set_hat", { hat });
+    } else {
+      this.api.get("set_hat", {});
+    }
   }
 
 }
