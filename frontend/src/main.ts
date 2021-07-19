@@ -13,3 +13,11 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 
 
 document.addEventListener("touchmove", (e) => { e.preventDefault() }, { passive: false });
+const enableAudio = () => {
+  const audio: HTMLAudioElement | null = document.querySelector("audio");
+  if (audio) {
+    audio.muted = false;
+  }
+};
+window.addEventListener("touchstart", enableAudio);
+window.addEventListener("mousedown", enableAudio);

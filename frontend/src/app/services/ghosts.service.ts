@@ -33,11 +33,13 @@ export class GhostsService {
 
   public deleteGhost(id: string, reemit: boolean = true) {
     this.ghosts[id].active = false;
-    if (this.ghosts[id].type === "food") {
-      const audio = new Audio();
-      audio.src = `/assets/audio/crunch/${Math.floor(Math.random() * 2) + 1}.wav`;
-      audio.load();
-      audio.play();
+    const audio: HTMLAudioElement | null = document.querySelector("audio");
+    if (audio) {
+      if (this.ghosts[id].type === "food") {
+        audio.src = `/assets/audio/crunch/${Math.floor(Math.random() * 2) + 1}.wav`;
+        audio.load();
+        audio.play();
+      }
     }
     if (reemit)
       this.api.socketEmit("deleteGhost", id);
