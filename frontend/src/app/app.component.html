@@ -12,7 +12,7 @@
     <div id="food">
       <app-interaction type="food" (drop)="attributes.feed(0.3)" img="/assets/imgs/interactions/cookie.png"></app-interaction>
     </div>
-    <img *ngFor="let ghost of ghosts.getGhosts()" [ngClass]="{hidden: !ghost.active}" [src]="ghost.img" alt="" class="ghost"
+    <!-- <img *ngFor="let ghost of ghosts.getGhosts()" [ngClass]="{hidden: !ghost.active}" [src]="ghost.img" alt="" class="ghost"
       [ngStyle]="{top: ghost.y+'px', left: ghost.x+'px'}">
-  </div>
+  </div> -->
 </div>
