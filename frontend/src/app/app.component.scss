@@ -184,5 +184,5 @@ $button-size: clamp(50px, 10vh, 5vw);
 }
 
 #sliders {
-    pointer-events: none;
+    pointer-events: none!important;
 }
