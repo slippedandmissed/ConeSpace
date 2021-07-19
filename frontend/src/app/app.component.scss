@@ -134,12 +134,22 @@ $button-size: clamp(50px, 10vh, 5vw);
         &.landscape {
             display: none !important;
         }
+        flex-direction: column;
+
+        @media screen and (max-height: 750px) {
+            font-size: 2.7em;
+            > * {
+                margin: 5px 10px !important;
+            }
+        }
     }
     @media screen and (orientation: landscape) {
         justify-content: flex-start;
         &.portrait {
             display: none !important;
         }
+        flex-flow: wrap;
+        max-width: 40vw;
     }
 
     .hat-button {
