@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GhostsService } from 'src/app/services/ghosts.service';
 
 type animationTypes = "idle" | "reach";
@@ -16,6 +16,10 @@ export class WaffleconeComponent implements OnInit {
   public armAngle: number = 180;
 
   public animation: animationTypes = "idle";
+
+  @Output() onheadpat: EventEmitter<void> = new EventEmitter();
+
+  @Input() patting: boolean = false;
 
   calculateAnimation() {
     const body = document.querySelector("#body");
@@ -61,6 +65,10 @@ export class WaffleconeComponent implements OnInit {
       setTimeout(doAnimation, 1000/30);
     }
     doAnimation();
+  }
+
+  headpat() {
+    this.onheadpat.emit();
   }
 
 }

@@ -1,5 +1,5 @@
 <div id="ground">
-  <app-wafflecone></app-wafflecone>
+  <app-wafflecone (onheadpat)="headpat()" [patting]="headpatService.isPatting"></app-wafflecone>
 </div>
 <app-skybox></app-skybox>
 <div id="controls">
@@ -45,4 +45,6 @@
       </app-interaction>
     </div>
   </div>
-  <div id="entities"></div>
+</div>
+<div id="entities">
+</div>

@@ -139,6 +139,10 @@ const setupListeners = (socket) => {
         }
     });
 
+    socket.on("headpat", () => {
+        socket.broadcast.emit("headpat");
+    })
+
 }
 
 module.exports = { router, emitAttributes, setupListeners };

@@ -1,5 +1,6 @@
 <svg [style]="'--angle: '+angle+'deg; --arm-angle: '+(180 + armAngle)+'deg;'" [class]="animation" width="600"
-    height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="wafflecone">
         <g id="cat">
             <g id="back">
@@ -34,8 +35,8 @@
                             fill="#FFB4B4" stroke="black" />
                     </g>
                 </g>
-                <path id="body"
-                    d="M378 413.5C350.451 314.322 317.5 297.178 317.5 279.5C317.5 273.5 316.675 257.983 323.5 250C350 219 350.125 212 343.5 185.5C332.832 142.828 305 132.457 258.5 136.5C224 139.5 211.544 165.757 208 185.5C201.09 224 230 249 245.5 263.5C261 278 201 360 203.5 417.5C206 475 198 547.5 297.5 547.5C337.5 547.5 405.5 512.5 378 413.5Z"
+                <path id="body" (click)="headpat()"
+                    d="M378 413.5C350.451 314.322 317.5 297.178 317.5 279.5C317.5 273.5 316.675 257.983 323.5 250C350 219 350.125 212 343.5 185.5C332.832 142.828 305 132.457 258.5 136.5C224 139.5 211.543 165.757 208 185.5C201.09 224 230 249 245.5 263.5C261 278 201 360 203.5 417.5C206 475 198 547.5 297.5 547.5C337.5 547.5 405.5 512.5 378 413.5Z"
                     fill="#D334CA" stroke="black" />
                 <g id="face">
                     <path id="nose"
@@ -66,7 +67,7 @@
                     <path id="collar_link" d="M274.5 300.5C274.333 299 274.2 288.4 275 288" stroke="black" />
                 </g>
                 <g id="front_paws">
-                    <g *ngIf="armAngle < 0" id="right_front_paw" filter="url(#filter0_dd)">
+                    <g id="right_front_paw" *ngIf="armAngle <= 0" filter="url(#filter0_dd)">
                         <path
                             d="M253.5 567C250 563 242.667 476.667 243.5 431.5L281 433.5C284.667 473 287.4 556.6 277 567C264 580 259.712 574.1 253.5 567Z"
                             fill="#D334CA" />
@@ -76,15 +77,15 @@
                             d="M311.065 567.5C307.565 563.5 298.667 478.667 299.5 433.5L339 429.5C342.667 469 344.965 557.1 334.565 567.5C321.565 580.5 317.278 574.6 311.065 567.5Z"
                             fill="#D334CA" />
                     </g>
-                    <g *ngIf="armAngle >= 0" id="right_front_paw" filter="url(#filter0_dd)">
+                    <g id="right_front_paw" *ngIf="armAngle > 0" filter="url(#filter0_dd)">
                         <path
                             d="M253.5 567C250 563 242.667 476.667 243.5 431.5L281 433.5C284.667 473 287.4 556.6 277 567C264 580 259.712 574.1 253.5 567Z"
                             fill="#D334CA" />
                     </g>
-
                 </g>
             </g>
         </g>
+        <rect [ngClass]="{active: patting}" id="hand" x="13" y="73" width="396" height="100" fill="url(#pattern0)" />
     </g>
     <defs>
         <filter id="filter0_dd" x="242.435" y="431.5" width="42.8513" height="144.193" filterUnits="userSpaceOnUse"
@@ -113,5 +114,10 @@
             <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
             <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
         </filter>
+        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+            <use xlink:href="#image0" transform="translate(0 -0.0229783) scale(0.00108696 0.00430435)" />
+        </pattern>
+        <image id="image0" data-name="hand.png" width="920" height="243"
+            xlink:href="/assets/imgs/hand.png" />
     </defs>
 </svg>

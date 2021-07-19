@@ -12,6 +12,12 @@ svg * {
     transform-box: fill-box;
 }
 
+#face,
+#front_paws,
+#collar {
+    pointer-events: none;
+}
+
 svg.idle {
     #eyes > * {
         transform-origin: center;
@@ -52,33 +58,32 @@ svg.idle {
     }
 }
 
-
 svg.reach {
     #tail {
         transform-origin: 0 100%;
         animation: wiggle 0.3s infinite alternate ease-in-out;
     }
-    
+
     #front {
         transform-origin: 50% 80%;
         transform: rotate(var(--angle));
     }
-    
+
     #front_paws {
         transform: translateY(-20%);
     }
-    
+
     #left_front_paw,
     #right_front_paw {
         transform-origin: 50% -20%;
         transform: rotate(var(--arm-angle));
     }
-    
+
     #eyes > * {
         transform-origin: center;
         transform: rotate(calc(var(--arm-angle) + 90deg)) translateX(50%);
     }
-    
+
     #mouth {
         transform-origin: center;
         transform: scale(1.5);
@@ -101,5 +106,26 @@ svg.reach {
     }
     100% {
         transform: rotate(2deg);
+    }
+}
+
+
+#hand {
+    
+    &:not(.active) {
+        display: none;
+    }
+
+    &.active {
+        animation: pat 0.2s infinite alternate ease-out;
+    }
+}
+
+@keyframes pat {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%);
     }
 }
