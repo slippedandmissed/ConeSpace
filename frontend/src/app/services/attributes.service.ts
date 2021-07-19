@@ -72,10 +72,6 @@ export class AttributesService {
   public feed(amount: number) {
     this.api.get("feed", { amount });
     this.clientSidePrediction("hunger", amount);
-    const audio = new Audio();
-    audio.src = `/assets/audio/crunch/${Math.floor(Math.random() * 2) + 1}.wav`;
-    audio.load();
-    audio.play();
   }
 
   public water(amount: number) {

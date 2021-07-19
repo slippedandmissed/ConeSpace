@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { GhostsService } from 'src/app/services/ghosts.service';
+import { GhostsService, ghostType } from 'src/app/services/ghosts.service';
 
 @Component({
   selector: 'app-interaction',
@@ -27,9 +27,10 @@ export class InteractionComponent implements OnInit {
   constructor(public ghosts: GhostsService) { }
 
   @Input() img: string = "";
+  @Input() type: ghostType;
 
   onDragStart(event: any) {
-    this.ghosts.createGhost(this.myGhostId, this.img, event.center.x, event.center.y);
+    this.ghosts.createGhost(this.myGhostId, this.img, this.type, event.center.x, event.center.y);
   }
 
   onDragMove(event: any) {
