@@ -21,7 +21,7 @@ export class GhostsService {
   private ghosts: { [key: string]: Ghost } = {};
 
   private generateSelector(id: string): string {
-    return `#ghost_${btoa(id).replace(/=/g, "_")}`;
+    return `#ghost_${btoa(id).replace(/=/g, "_").replace(/\+/g, "-")}`;
   }
 
   public createGhost(id: string, img: string, type: ghostType, x: number, y: number, reemit: boolean = true) {
@@ -87,6 +87,7 @@ export class GhostsService {
       const ghost = this.ghosts[id];
       let obj: HTMLImageElement | null = document.querySelector(this.generateSelector(id));
       if (obj === null) {
+        console.log(this.generateSelector(id));
         obj = document.createElement("img");
         container.appendChild(obj);
         obj.classList.add("ghost");
