@@ -9,21 +9,21 @@ const allAttributes = {
         max: () => new Date().getTime()
     },
     hunger_per_second: {
-        default: () => 0.01
+        default: () => 1/3600/24
     },
     thirst: {
         default: () => new Date().getTime(),
         max: () => new Date().getTime()
     },
     thirst_per_second: {
-        default: () => 0.015
+        default: () => 1/3600/24 * 1.2
     },
     boredom: {
         default: () => new Date().getTime(),
         max: () => new Date().getTime()
     },
     boredom_per_second: {
-        default: () => 0.012
+        default: () => 1/3600/24 * 0.9
     },
     all_hats: {
         default: () => ["fedora", "fez", "tophat"]
@@ -56,29 +56,30 @@ const setAttribute = async (name, value) => {
 }
 
 const increaseAttribute = async (name, delta) => {
-    const minimum = new Date().getTime() - 1000 / (await getAttribute(`${name}_per_second`));
-    const value = Math.min(Math.max(await getAttribute(name), minimum) + delta, allAttributes[name].max());
-    await setAttribute(name, value);
+    const rate = await getAttribute(`${name}_per_second`);
+    const now = new Date().getTime();
+    const currentTimestamp = await getAttribute(name);
+    const currentValue = (now - currentTimestamp)/1000 * rate;
+    const newValue = Math.min(Math.max(currentValue + delta, 0), 1);
+    const newTimestamp = now - (newValue / rate * 1000);
+    await setAttribute(name, newTimestamp);
 }
 
 router.get("/feed", async (req, res) => {
     const { amount } = req.query;
-    const rawIncrement = amount / (await getAttribute("hunger_per_second")) * 1000;
-    await increaseAttribute("hunger", rawIncrement);
+    await increaseAttribute("hunger", -amount);
     res.json({});
 });
 
 router.get("/water", async (req, res) => {
     const { amount } = req.query;
-    const rawIncrement = amount / (await getAttribute("thirst_per_second")) * 1000;
-    await increaseAttribute("thirst", rawIncrement);
+    await increaseAttribute("thirst", -amount);
     res.json({});
 });
 
 router.get("/play", async (req, res) => {
     const { amount } = req.query;
-    const rawIncrement = amount / (await getAttribute("boredom_per_second")) * 1000;
-    await increaseAttribute("boredom", rawIncrement);
+    await increaseAttribute("boredom", -amount);
     res.json({});
 });
 
