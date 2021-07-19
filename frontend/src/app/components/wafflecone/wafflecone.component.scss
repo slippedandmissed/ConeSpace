@@ -27,6 +27,11 @@ svg.idle {
         animation: wiggle 3s infinite alternate ease-in-out;
     }
 
+    #front_paws > * {
+        transform-origin: 50% 0;
+        animation: wiggle 2s infinite alternate ease-in-out;
+    }
+
     #whiskers * {
         transform-origin: 100% 50%;
         animation: wiggle 2s infinite alternate ease-in-out;
@@ -36,11 +41,43 @@ svg.idle {
                 transform-origin: 0 50%;
             }
         }
-        
+
         &:nth-of-type(2n) {
             animation-delay: 0.8s;
         }
+    }
+}
 
+
+svg.reach {
+    #tail {
+        transform-origin: 0 100%;
+        animation: wiggle 0.3s infinite alternate ease-in-out;
+    }
+    
+    #front {
+        transform-origin: 50% 80%;
+        transform: rotate(var(--angle));
+    }
+    
+    #front_paws {
+        transform: translateY(-20%);
+    }
+    
+    #left_front_paw,
+    #right_front_paw {
+        transform-origin: 50% -20%;
+        transform: rotate(var(--arm-angle));
+    }
+    
+    #eyes > * {
+        transform-origin: center;
+        transform: rotate(calc(var(--arm-angle) + 90deg)) translateX(50%);
+    }
+    
+    #mouth {
+        transform-origin: center;
+        transform: scale(1.5);
     }
 }
 
